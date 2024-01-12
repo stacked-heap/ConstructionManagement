@@ -1,13 +1,10 @@
 package com.constuctionmanagement.ConstructionManagement.service;
 
-import com.constuctionmanagement.ConstructionManagement.model.Entry;
-import com.constuctionmanagement.ConstructionManagement.model.EntryRequest;
-import com.constuctionmanagement.ConstructionManagement.model.Labour;
-import com.constuctionmanagement.ConstructionManagement.model.Site;
-import com.constuctionmanagement.ConstructionManagement.repository.EntryRepository;
-import com.constuctionmanagement.ConstructionManagement.repository.LabourRepository;
+import com.constuctionmanagement.ConstructionManagement.model.*;
+import com.constuctionmanagement.ConstructionManagement.repository.*;
+import org.antlr.v4.runtime.misc.LogManager;
+import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Service;
-import com.constuctionmanagement.ConstructionManagement.repository.SiteRepository;
 
 import java.util.Date;
 import java.util.List;
@@ -17,10 +14,17 @@ public class SiteService {
     private final SiteRepository siteRepo;
     private final LabourRepository labourRepo;
     private final EntryRepository entryRepo;
-    public SiteService(SiteRepository siteRepo, LabourRepository labourRepo, EntryRepository entryRepo) {
+    private final MaterialRespository materialRepo;
+    private final SupplierEntryRepository supplierEntryRepo;
+    private final SupplierRepository supplierRepo;
+
+    public SiteService(SiteRepository siteRepo, LabourRepository labourRepo, EntryRepository entryRepo, MaterialRespository materialRepo, SupplierEntryRepository supplierEntryRepo, SupplierRepository supplierRepo) {
         this.siteRepo = siteRepo;
         this.labourRepo = labourRepo;
         this.entryRepo = entryRepo;
+        this.materialRepo = materialRepo;
+        this.supplierEntryRepo = supplierEntryRepo;
+        this.supplierRepo = supplierRepo;
     }
 
     public void createSite(Site siteDetails) {
@@ -74,5 +78,62 @@ public class SiteService {
 
     public void deleteEntry(String id) {
         entryRepo.deleteById(id);
+    }
+
+    public void createMaterial(Material material) {
+        materialRepo.save(material);
+    }
+
+    public void editMaterial(Material material) {
+        materialRepo.save(material);
+    }
+
+    public void deleteMaterial(String id) {
+        materialRepo.deleteById(id);
+    }
+
+    public List<Material> getAllMaterial() {
+        return materialRepo.findAll();
+    }
+
+    public List<SupplierEntry> getAllSupplierEntries() {
+        return supplierEntryRepo.findAll();
+    }
+
+    public void createSupplierEntry(SupplierEntry entry) {
+        supplierEntryRepo.save(entry);
+    }
+
+    public void editSupplierEntry(SupplierEntry entry) {
+        supplierEntryRepo.save(entry);
+    }
+
+    public void deleteSupplierEntry(String id) {
+        supplierEntryRepo.deleteById(id);
+    }
+
+    public void createSupplier(Supplier supplier) {
+        supplierRepo.save(supplier);
+    }
+
+    public void editSupplier(Supplier supplier) {
+        supplierRepo.save(supplier);
+    }
+
+    public void deleteSupplier(String id) {
+        supplierRepo.deleteById(id);
+    }
+
+    public List<Supplier> getAllSupplier() {
+        return supplierRepo.findAll();
+    }
+
+    public List<SupplierEntry> getSupplierEntries(Date fromDate, Date toDate, SupplierEntryRequest request) {
+
+        return supplierEntryRepo.findAllByDateGreaterThanEqualAndDateLessThanEqualAndSite_IdInAndSupplier_IdIn(fromDate, toDate, request.getSiteIds(), request.getSupplierIds());
+    }
+
+    public List<SupplierEntry> getSupplierEntriesForSite(String siteId) {
+        return supplierEntryRepo.findBySite_Id(siteId);
     }
 }
