@@ -30,6 +30,9 @@ public class SupplierEntry {
     private Date date;
 
     @Column
-    private Integer units;
+    private double units;
+
+    @Column
+    private double billAmount;
 
 }

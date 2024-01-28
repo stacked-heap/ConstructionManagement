@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Data
 @Entity
-public class Entry {
+public class ForemanEntry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -19,12 +19,16 @@ public class Entry {
 
     @JoinColumn(referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Labour labour;
+    private LabourType labourType;
+
+    @JoinColumn(referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Foreman foreman;
+
+    @Column
+    private double noOfPersons;
 
     @Column
     private Date date;
-
-    @Column
-    private boolean overtime;
 
 }

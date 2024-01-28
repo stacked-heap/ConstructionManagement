@@ -5,9 +5,9 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class EntryRequest {
+public class ForemanEntryRequest {
     private String fromDate;
     private String toDate;
-    private List<String> labourIds;
+    private List<String> foremanIds;
     private List<String> siteIds;
 }

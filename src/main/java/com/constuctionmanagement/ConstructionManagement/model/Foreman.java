@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Labour {
+public class Foreman {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Id
     private String id;
@@ -16,6 +16,4 @@ public class Labour {
     @Column
     private String location;
 
-    @Column
-    private Integer rate;
 }
