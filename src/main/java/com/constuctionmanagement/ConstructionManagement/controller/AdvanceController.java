@@ -43,8 +43,11 @@ public class AdvanceController {
         return advanceService.getAllForemanAdvance();
     }
 
-
-
+    @GetMapping("/foreman/advance")
+    @ResponseBody
+    public List<ForemanAdvance> getForemanAdvance(@RequestParam String foremanId){
+        return advanceService.getForemanAdvanceForForeman(foremanId);
+    }
 
     @PostMapping("/supplier/advance")
     @ResponseBody

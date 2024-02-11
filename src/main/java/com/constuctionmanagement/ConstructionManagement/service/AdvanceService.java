@@ -50,4 +50,8 @@ public class AdvanceService {
     public List<SupplierAdvance> getAllSupplierAdvance() {
         return supplierAdvanceRepository.findAll();
     }
+
+    public List<ForemanAdvance> getForemanAdvanceForForeman(String foremanId) {
+        return foremanAdvanceRepository.findByForeman_Id(foremanId);
+    }
 }
