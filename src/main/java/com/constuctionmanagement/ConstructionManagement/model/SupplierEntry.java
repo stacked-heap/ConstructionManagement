@@ -3,8 +3,8 @@ package com.constuctionmanagement.ConstructionManagement.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
 
 @Data
 @Entity
@@ -27,12 +27,12 @@ public class SupplierEntry {
     private Supplier supplier;
 
     @Column
-    private Date date;
+    private LocalDate date;
 
     @Column
-    private double units;
+    private int units;
 
     @Column
-    private double billAmount;
+    private int billAmount;
 
 }

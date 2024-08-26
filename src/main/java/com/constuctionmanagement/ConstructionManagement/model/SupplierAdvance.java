@@ -3,6 +3,7 @@ package com.constuctionmanagement.ConstructionManagement.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -18,9 +19,9 @@ public class SupplierAdvance {
     private Supplier supplier;
 
     @Column
-    private double amount;
+    private Integer amount;
 
     @Column
-    private Date date;
+    private LocalDate date;
 
 }

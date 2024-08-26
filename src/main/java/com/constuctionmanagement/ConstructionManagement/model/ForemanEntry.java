@@ -3,6 +3,7 @@ package com.constuctionmanagement.ConstructionManagement.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -26,9 +27,9 @@ public class ForemanEntry {
     private Foreman foreman;
 
     @Column
-    private double noOfPersons;
+    private int noOfPersons;
 
     @Column
-    private Date date;
+    private LocalDate date;
 
 }
